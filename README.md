@@ -1,73 +1,95 @@
-# Welcome to your Lovable project
+# Dino Camp Roster
 
-## Project info
+A full-stack application for managing the Dino Discovery Camp roster. Built with React (frontend) and Express (backend), backed by PostgreSQL.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## Prerequisites
 
-## How can I edit this code?
+- **Node.js** (v18 or later) and npm
+- **PostgreSQL** (for the backend database)
 
-There are several ways of editing your application.
+## Quick Start
 
-**Use Lovable**
+### 1. Install Dependencies
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+From the project root:
 
-Changes made via Lovable will be committed automatically to this repo.
+```bash
+npm install
+```
 
-**Use your preferred IDE**
+This installs dependencies for both the frontend and backend.
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### 2. Set Up the Database
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+1. Create the PostgreSQL database:
 
-Follow these steps:
+   ```bash
+   createdb dinocamp
+   ```
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+2. Run the schema:
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+   ```bash
+   psql -d dinocamp -f db/schema.sql
+   ```
 
-# Step 3: Install the necessary dependencies.
-npm i
+3. (Optional) Seed with sample data:
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+   ```bash
+   psql -d dinocamp -f db/seed.sql
+   ```
+
+### 3. Configure Environment
+
+Copy the example environment file and update it if needed:
+
+```bash
+cp .env.example .env
+```
+
+Edit `.env` and set your database connection:
+
+```
+DATABASE_URL=postgresql://USER:PASSWORD@HOST:PORT/DATABASE
+PORT=3000
+```
+
+Default local setup: `postgresql://localhost:5432/dinocamp`
+
+### 4. Run the Application
+
+Start both the frontend and backend together:
+
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+This runs:
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+- **Frontend** (Vite + React) at [http://localhost:8080](http://localhost:8080)
+- **Backend** (Express API) at [http://localhost:3000](http://localhost:3000)
 
-**Use GitHub Codespaces**
+## Running Parts Separately
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Run frontend and backend together |
+| `npm run dev:frontend` | Run only the frontend (port 8080) |
+| `npm run dev:backend` | Run only the backend (port 3000) |
+| `npm run build` | Build the frontend for production |
+| `npm run start` | Start the backend in production mode |
 
-## What technologies are used for this project?
+## Project Structure
 
-This project is built with:
+```
+├── frontend/     # React + Vite + TypeScript + shadcn/ui
+├── backend/      # Express.js API server
+├── db/           # PostgreSQL schema and seed scripts
+└── .env.example  # Environment variable template
+```
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## Tech Stack
 
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+- **Frontend:** React, TypeScript, Vite, Tailwind CSS, shadcn/ui
+- **Backend:** Node.js, Express
+- **Database:** PostgreSQL
